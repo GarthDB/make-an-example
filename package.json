@@ -1,0 +1,51 @@
+{
+  "name": "make-an-example",
+  "version": "1.0.0",
+  "description": "Helper method to help make examples for documentation.",
+  "main": "index.js",
+  "scripts": {
+    "compile": "babel -d lib/ src/",
+    "prepublish": "npm run compile",
+    "test": "ava",
+    "coverage": "nyc npm test",
+    "codeclimate": "npm run coverage && nyc report --reporter=text-lcov | codeclimate-test-reporter",
+    "lint": "eslint --ignore-path .gitignore ."
+  },
+  "keywords": [
+    "example",
+    "class",
+    "inspection"
+  ],
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
+  "nyc": {
+    "include": [
+      "src/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ]
+  },
+  "author": "Garth Braithwaite <garthdb@gmail.com> (http://garthdb.com)",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-istanbul": "^2.0.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-register": "^6.11.6",
+    "codeclimate-test-reporter": "^0.3.3",
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb": "^10.0.0",
+    "eslint-plugin-import": "^1.12.0",
+    "eslint-plugin-jsx-a11y": "^2.1.0",
+    "eslint-plugin-react": "^6.0.0",
+    "ava": "^0.16.0",
+    "nyc": "^8.1.0"
+  }
+}
