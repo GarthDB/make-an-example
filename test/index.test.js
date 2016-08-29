@@ -1,6 +1,7 @@
 import test from 'ava';
 import MakeAnExample, {
   getArgsNames,
+  getFuncName,
   generateArgsObj,
   generateFunctionObj,
   formatFunction,
@@ -15,11 +16,34 @@ test('Get argument names', t => {
   t.deepEqual(result, expected);
 });
 
-test('Generate Arguments Object', t => {
+test('Get function name', t => {
   function aFunc(arg1, arg2) {
-    return arguments;
+    return [arg1, arg2];
   }
-  const args = aFunc('value 1', 'value 2');
+  const result = getFuncName(aFunc);
+  const expected = 'aFunc';
+  t.deepEqual(result, expected);
+});
+
+test('Function name false when anonymous', t => {
+  let result;
+  const expected = false;
+  const aFunc = function (arg1, arg2) {
+    result = getFuncName(arguments.callee);
+    t.deepEqual(result, expected);
+    return [arg1, arg2];
+  };
+  aFunc('value 1', 'value 2');
+});
+
+test('Generate Arguments Object', t => {
+  let args;
+  function aFunc(arg1, arg2) {
+    // eslint-disable-next-line prefer-rest-params
+    args = arguments;
+    return [arg1, arg2];
+  }
+  aFunc('value 1', 'value 2');
   const argNames = getArgsNames(aFunc);
   const argValues = Array.prototype.slice.call(args);
   const argsObj = generateArgsObj(argNames, argValues);
@@ -28,10 +52,13 @@ test('Generate Arguments Object', t => {
 });
 
 test('Generate Arguements Object with extra arguments', t => {
+  let args;
   function aFunc(arg1, arg2) {
-    return arguments;
+    // eslint-disable-next-line prefer-rest-params
+    args = arguments;
+    return [arg1, arg2];
   }
-  const args = aFunc('value 1', 'value 2', 'extra 1', 'extra 2');
+  aFunc('value 1', 'value 2', 'extra 1', 'extra 2');
   const argNames = getArgsNames(aFunc);
   const argValues = Array.prototype.slice.call(args);
   const argsObj = generateArgsObj(argNames, argValues);
@@ -43,10 +70,13 @@ test('Generate Arguements Object with extra arguments', t => {
 });
 
 test('Generate Function Object', t => {
+  let args;
   function aFunc(arg1, arg2) {
-    return arguments;
+    // eslint-disable-next-line prefer-rest-params
+    args = arguments;
+    return [arg1, arg2];
   }
-  const args = aFunc('value 1', 'value 2', 'extra 1', 'extra 2');
+  aFunc('value 1', 'value 2');
   const funcName = args.callee.name;
   const argNames = getArgsNames(aFunc);
   const argValues = Array.prototype.slice.call(args);

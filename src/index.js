@@ -11,6 +11,11 @@ export function getArgsNames(func) {
   // Split the arguments string into an array comma delimited.
   return args.split(',').map(arg => arg.replace(/\/\*.*\*\//, '').trim()).filter(arg => arg);
 }
+export function getFuncName(func) {
+  // First match everything inside the function argument parens.
+  const name = func.toString().match(/function(\s.*)?\((?:[^)]*)\)/)[1];
+  return name.trim();
+}
 /**
  * Public: matches argument names and argument values into an {Object}.
  *
@@ -84,7 +89,7 @@ export default function MakeAnExample(
 ) {
   const argsArray = Array.prototype.slice.call(args);
   const argNames = getArgsNames(args.callee);
-  const functionName = args.callee.name;
+  const functionName = getFuncName(args.callee);
   const argsObj = generateArgsObj(argNames, argsArray);
   const funcObject = generateFunctionObj(functionName, argsObj);
   formatFunction(funcObject, logFunction);
