@@ -57,3 +57,6 @@ extra 1
 Extra Argument [1]:
 extra 2
 ```
+
+---
+This project is licensed under the terms of the [Apache-2 license](https://github.com/GarthDB/make-an-example/blob/master/LICENSE).
