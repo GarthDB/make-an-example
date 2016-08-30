@@ -63,7 +63,7 @@ test('Generate Function Object', t => {
     return arguments;
   }
   const args = aFunc('value 1', 'value 2');
-  const funcName = getFuncName(aFunc);
+  const funcName = getFuncName(aFunc.toString());
   const argNames = getArgsNames(aFunc);
   const argValues = Array.prototype.slice.call(args);
   const argsObj = generateArgsObj(argNames, argValues);
@@ -98,7 +98,7 @@ test('Format Example', t => {
 });
 test('Format Example from MakeAnExample', t => {
   let result = '';
-  function format(message) {
+  function log(message) {
     result += message;
     result += '\n';
   }
@@ -108,7 +108,16 @@ test('Format Example from MakeAnExample', t => {
     return arguments;
   }
   const args = aFunc('value 1', 'value 2', 'extra 1', 'extra 2');
-  makeAnExample(aFunc, args, formatExample, format);
+  makeAnExample(aFunc, args, formatExample, log);
   const expected = fs.readFileSync('./expected/formatted-message.txt', 'utf-8');
   t.deepEqual(result, expected);
+});
+test('Format Example from MakeAnExample with console.log', t => {
+  // eslint-disable-next-line no-unused-vars
+  function aFunc(arg1, arg2) {
+    // eslint-disable-next-line prefer-rest-params
+    return arguments;
+  }
+  const args = aFunc('value 1', 'value 2');
+  t.notThrows(() => { makeAnExample(aFunc, args); });
 });

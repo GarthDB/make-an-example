@@ -1,10 +1,12 @@
 {
   "name": "make-an-example",
+  "version": "0.0.0-semantically-released",
   "description": "Helper method to help make examples for documentation.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "start": "package-scripts",
-    "test": "package-scripts test"
+    "test": "package-scripts test",
+    "prepublish": "package-scripts build"
   },
   "keywords": [
     "example",

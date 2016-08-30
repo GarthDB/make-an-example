@@ -189,7 +189,7 @@ export function formatExample(funcObject, logFunction = console.log) {
  * Does not return a value, but passes messages to `logFunction`.
  */
 export default function makeAnExample(
-  func, args, formatFunction = formatExample, logFunction = null
+  func, args, formatFunction = formatExample, logFunction = undefined
 ) {
   const argNames = getArgsNames(func);
   const functionName = getFuncName(func);
