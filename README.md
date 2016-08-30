@@ -1,5 +1,9 @@
 # Make An Example
 
+[![codecov](https://codecov.io/gh/GarthDB/make-an-example/branch/master/graph/badge.svg)](https://codecov.io/gh/GarthDB/make-an-example) [![Inline docs](http://inch-ci.org/github/GarthDB/make-an-example.svg?branch=master)](http://inch-ci.org/github/GarthDB/make-an-example) [![Code Climate](https://codeclimate.com/github/GarthDB/make-an-example/badges/gpa.svg)](https://codeclimate.com/github/GarthDB/make-an-example) [![Issue Count](https://codeclimate.com/github/GarthDB/make-an-example/badges/issue_count.svg)](https://codeclimate.com/github/GarthDB/make-an-example/issues) [![Dependency Status](https://dependencyci.com/github/GarthDB/make-an-example/badge)](https://dependencyci.com/github/GarthDB/make-an-example) [![npm version](https://badge.fury.io/js/make-an-example.svg)](https://badge.fury.io/js/make-an-example)
+
+---
+
 A simple helper library for getting function names and parameters used in tests make examples for better documentation.
 
 It is not recommended to keep the library in published code.
